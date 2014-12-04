@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+
+<!--[if IE 8]><html lang="en" class="ie8 no-js"><![endif]-->
+
+<!--[if IE 9]><html lang="en" class="ie9 no-js"><![endif]-->
+
+<!--[if !IE]><!--><html lang="en" class="no-js"><!--<![endif]-->
+
+<!-- 头部开始 -->
+
+<head>
+
+<meta charset="utf-8" />
+
+<title>转化率分析</title>
+
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+<!-- 开始通用样式符合WEB要求的样式 -->
+
+<link href="../media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+<link href="../media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+
+<link href="../media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+<link href="../media/css/style-metro.css" rel="stylesheet" type="text/css"/>
+
+<link href="../media/css/style.css" rel="stylesheet" type="text/css"/>
+
+<link href="../media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+
+<link href="../media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+
+<link href="../media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+
+<link href="../media/css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>
+
+<!-- 结束通用样式符合WEB要求的样式 -->
+
+
+
+<!-- 开始加载页面样式表 -->
+
+<link href="../media/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+
+<link href="../media/css/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+
+<link href="../media/css/fullcalendar.css" rel="stylesheet" type="text/css"/>
+
+<link href="../media/css/jqvmap.css" rel="stylesheet" type="text/css" media="screen"/>
+
+<link href="../media/css/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
+
+<!-- 结束加载页面样式表 -->    
+
+<style>
+
+#div_pop_site,#div_pop_user{ display:inline;font-size:0;}
+
+.login .pop {
+
+	 display:inline;
+
+}
+
+.login label {
+
+	/*-moz-border-radius: 45px;
+
+	-khtml-border-radius: 45px;
+
+	-webkit-border-radius: 45px;*/
+
+	padding: 0px 5px 0px 5px;
+
+	background: #e7f2fb;
+
+	cursor:pointer;
+
+	display:inline-block;
+
+	text-align:left;
+
+	font-size:12px;
+
+	
+
+}
+
+.login .url {
+
+	background: #e7f2fb;
+
+	color: #54585b;
+
+	border: none;
+
+	width: 120px;
+
+	_height: 17px;
+
+	display:inline-block;
+
+	font:13px Tahoma;
+
+	vertical-align:top;
+
+	margin-top:6px;
+
+	
+
+}
+
+.login label:hover {
+
+	background: #fff;
+
+}
+
+.login label:hover .url {
+
+	background: #fff;
+
+}
+
+.login .sel {
+
+	position: relative;
+
+	display: inline-block;
+
+	height: 23px;
+
+	z-index: 200;
+
+} 
+
+/*==地址下拉箭头==*/
+
+.sel .ia {
+
+	position: absolute;
+
+	display: inline-block;
+
+	overflow: hidden;
+
+	width: 13px;
+
+	font-size: 0;
+
+	height: 8px;
+
+	background: url(http://imgcache.qq.com/bossweb/ta/images/overview/sj.png) no-repeat 0 -8px;
+
+	top: 10px;
+
+	right:0px;
+
+	
+
+	/*border-color: #e8f2fc;
+
+	top: 8px;
+
+	z-index: 2;
+
+	*/
+
+}
+
+.login .i_opt {
+
+	width: 20px;
+
+	height: 20px;
+
+	display: inline-block;
+
+	background: url(http://imgcache.qq.com/bossweb/ta/images/overview/i_opt_h.png) no-repeat 0 0;
+
+	margin: 5px 0px 0 10px;
+
+	cursor:pointer;
+
+	vertical-align:top;
+
+}
+
+.login .i_opt:hover  {
+
+	background-position: 0 -19px;
+
+}
+
+.login .i_ta{vertical-align:bottom;}
+
+/*==地址浮层==*/
+
+.login .pop label {
+
+	background: #fff;
+
+}
+
+.login .pop .url {
+
+	background: #fff;
+
+}
+
+.pop:hover .sel .ia {
+
+	background-position: 0 -8px;
+
+	-moz-transition:-moz-transform 0.3s ease-in 0s; 
+
+	-moz-transform:rotate(180deg);
+
+	 -moz-transform-origin:center center;
+
+	-webkit-transition:-webkit-transform 0.3s ease-in 0s;
+
+	 -webkit-transform:rotate(180deg); 
+
+	 -webkit-transform-origin:center center;
+
+	/*
+
+	border-color: #3b3b3b;
+
+	z-index:1;
+
+	*/
+
+
+
+}
+
+.pop .login_url {
+
+	left:0px;
+
+	top:-10px;
+
+	*top:14px;
+
+}
+
+.pop .login_url .pop_cont {
+
+	left: -5px;
+
+	border-top: 1px solid #1d61a4;
+
+	max-height:300px;
+
+	overflow:auto;
+
+}
+
+.website_title{ }
+
+.website_title li {
+
+	line-height: 38px;
+
+	_height:38px;
+
+	font-size: 14px;
+
+    list-style-type:none;
+
+}
+
+.website_title li i{
+	font-size: 22px;
+	
+	font-weight: bold;
+	
+	vertical-align:middle;
+
+  	text-shadow: 0 1px 0 #ffffff;
+
+  	font-style:normal;
+
+  	margin-right:10px;
+
+}
+
+.website_title1 li a{
+
+	text-decoration: none;
+
+	padding: 0 12px;
+
+	display: block;
+
+	border-bottom: 1px solid #e6e6e6;
+
+}
+
+.website_title li:first-child a:link, .website_title li:first-child a:visited {
+
+	-moz-border-radius: 5px 5px 0px 0px;
+
+	-khtml-border-radius:5px 5px 0px 0px;
+
+	-webkit-border-radius:5px 5px 0px 0px;
+
+	border-radius: 5px 5px 0px 0px;
+}
+
+.website_title li:first-child a:active, .website_title li:first-child a:hover {
+
+	-moz-border-radius: 5px 5px 0px 0px;
+
+	-khtml-border-radius:5px 5px 0px 0px;
+
+	-webkit-border-radius:5px 5px 0px 0px;
+
+	border-radius: 5px 5px 0px 0px;
+
+}
+
+.website_title li a:link, .website_title li a:visited {
+
+	color: #5b5b5b;
+
+	
+
+}
+
+.website_title li a:active, .website_title li a:hover {
+
+	color: #0073aa;
+
+	background: #f5f5f5;
+
+}
+
+.website_title li a:link  i, .website_title li a:visited  i{
+
+	color:#c5c5c5;
+
+}
+
+.website_title li a:active  i, .website_title li a:hover  i{
+
+	color:#56aa35;
+
+}
+
+.website_title li li a{
+
+	padding-left:35px;
+
+}
+
+.manage {
+
+	background:#f5f5f5;
+
+	height:34px;
+
+	line-height:34px;
+
+	text-align:right;
+
+	padding:0 12px;
+
+	-moz-border-radius: 0px 0px 3px 3px;
+
+	-khtml-border-radius:0px 0px 3px 3px;
+
+	-webkit-border-radius: 0px 0px 3px 3px;
+
+	border-radius: 0px 0px 3px 3px;
+
+	
+
+}
+
+.login .pop .i_user, .login .i_user:hover {
+
+	background-position: 0 -19px;
+
+}
+
+.pop .login_user .pop_cont {
+
+	width: 160px;
+
+	border-top: 1px solid #1d61a4;
+
+}
+
+.pop .login_user {
+
+	left:-115px;
+
+	top:-10px;
+
+	*top:14px;
+
+}
+
+.pop .login_user .ia,.pop .login_user .ib{
+
+	left:125px;
+
+}
+
+.login_user .user {
+
+	border-bottom: 1px solid #e6e6e6;
+
+	height: 32px;
+
+	line-height: 32px;
+
+	padding-left: 10px;
+
+}
+
+/*==浮层==*/
+
+.pop {
+
+	position: relative;
+
+	z-index: 100;
+
+	display: inline;
+
+	font-size:0;
+
+}
+
+.pop_wrap {
+
+	display:none;
+
+}
+
+.pop .pop_wrap {
+
+	display: inline-block;
+
+	position:absolute;	
+
+}
+
+.pop_wrap .ia {
+
+	left: 80px;
+
+	top: 17px;
+
+	width: 0;
+
+	height: 0;
+
+	position: absolute;
+
+	z-index:101;
+
+	display: inline-block;
+
+	border-bottom: 7px solid #1d61a4;
+
+	border-right: 7px dashed transparent;
+
+	border-left: 7px dashed transparent;
+
+	font-size:0;
+
+	content: "";
+
+	overflow:hidden;
+
+}
+
+.pop_wrap .ib {
+
+	border-bottom: 7px solid #fff;
+
+	border-right: 7px dashed transparent;
+
+	border-left: 7px dashed transparent;
+
+	left: 80px;
+
+	top: 18px;
+
+	width: 0;
+
+	height: 0;
+
+	position: absolute;
+
+	z-index:102;
+
+}
+
+.pop_cont {
+
+	
+
+	position: absolute;
+
+	z-index:99;
+
+	width: 130px;
+
+	 background-color: #ffffff;
+
+  border: 1px solid #ccc;
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+
+  *border-right-width: 2px;
+
+  *border-bottom-width: 2px;
+
+  -webkit-border-radius: 2px;
+
+	 -moz-border-radius: 2px;
+
+		  border-radius: 2px;
+
+  -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+
+	 -moz-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+
+		  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+
+  -webkit-background-clip: padding-box;
+
+	 -moz-background-clip: padding;
+
+		  background-clip: padding-box;
+
+		  font-size:12px;
+
+	text-align:left;
+
+	  opacity: 1;
+
+	  /* height:0px;*/
+
+	 
+
+
+
+}
+
+.pop_cont h5{ padding-bottom:5px; font-weight:400; border:none;}
+
+</style>
+
+<link rel="shortcut icon" href="/favicon.ico" />
+
+</head>
+
+<!-- 头部结束 -->
+
+
+
+<!-- BEGIN BODY -->
+<body>
+	<!-- DIV -->
+	<div class="page-container">
+
+		<!-- BEGIN SIDEBAR -->
+		<div class="page-sidebar nav-collapse collapse">
+
+			<!-- BEGIN SIDEBAR MENU -->
+			<ul class="page-sidebar-menu">
+
+				<li>
+					<!-- 侧边栏目切换按钮开始 -->
+					<div class="sidebar-toggler hidden-phone"></div>
+					<!-- 侧边栏目切换按钮完 -->
+				</li>
+				
+				<li class="start active">
+					<a>
+					<span class="title">数据诊断优化</span>
+					</a>
+                    			<ul class="sub-menu">
+                        			<li class="active">
+							<a href="../index.html">
+							转化率分析</a>
+						</li>
+						<li>
+							<a href="#">
+							店铺首页分析</a>
+						</li>
+						<li>
+							<a href="#">
+							宝贝详情分析</a>
+						</li>
+						<li>
+							<a href="#">
+							客服反馈分析</a>
+						</li>
+					</ul>
+				</li>
+				
+				<li>
+					<a>
+					<span class="title">客户管理</span>
+					</a>
+                    			<ul class="sub-menu">
+                        			<li>
+							<a href="#">
+							客户概况分析</a>
+						</li>
+						<li>
+							<a href="#">
+							客户数据库</a>
+						</li>
+						<li>
+							<a href="#">
+							客户脸谱分析</a>
+						</li>
+						<li>
+							<a href="#">
+							回头客分析</a>
+						</li>
+						<li>
+							<a href="#">
+							休眠客户分析</a>
+						</li>
+					</ul>
+				</li>
+
+			</ul>
+			<!-- END SIDEBAR MENU -->
+
+		</div>
+		<!-- END SIDEBAR -->
+
+		<!-- BEGIN PAGE --> 
+		<div class="page-content">
+		
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div id="portlet-config" class="modal hide">
+				<div class="modal-header">
+					<button data-dismiss="modal" class="close" type="button"></button>
+					<h3>Widget Settings</h3>
+				</div>
+				<div class="modal-body">
+					Widget settings form goes here
+				</div>
+			</div>
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+			<!-- BEGIN PAGE CONTAINER-->
+			<div class="container-fluid">
+				<!-- BEGIN PAGE HEADER-->
+				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+						<h3 class="page-title">
+							 <small></small>
+						</h3>
+						
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home"></i>
+								<a href="/">首页</a> 
+								<i class="icon-angle-right"></i>
+							</li>
+							<li>
+								<a href="#">数据诊断优化</a>
+								<i class="icon-angle-right"></i>
+							</li>
+							<li><a href="#">转化率分析</a></li>
+
+							<li class="pull-right no-text-shadow">
+								<div id="dashboard-report-range" class="dashboard-date-range tooltips no-tooltip-on-touch-device responsive" data-tablet="" data-desktop="tooltips" data-placement="top" data-original-title="改变报表日期范围">
+									日期范围&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-calendar"></i>
+									<span></span>
+									<i class="icon-angle-down"></i>
+								</div>
+							</li>
+						</ul>
+						<!-- END PAGE TITLE & BREADCRUMB-->
+					</div>
+				</div>
+				<!-- END PAGE HEADER-->
+				
+				<div id="dashboard">
+                	<div class="row-fluid">
+                	
+                		<!-- BEGIN INTERACTIVE CHART PORTLET-->
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption"><i class="icon-reorder"></i>转化率详情</div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse"></a>
+								</div>
+							</div>
+							
+							<div class="portlet-body">
+								<div id="chart_transfer_content">
+									<!-- <div id="chart_raw" style="height:300px;"></div> -->
+									<table id="chart_transfer_rate" class="display" cellspacing="0" width="100%" height:300px;">
+										<thead>
+											<tr>
+												<th>DTR</th>
+												<th>VTR</th>
+												<th>BTR</th>
+												<th>BDTR</th>
+												<th>PTR</th>
+												<th>VATR</th>
+												<th>NATR</th>
+												<th>ADTR</th>
+											</tr>
+										</thead>
+ 
+										<tfoot>
+											<tr>
+												<th>DTR</th>
+												<th>VTR</th>
+												<th>BTR</th>
+												<th>BDTR</th>
+												<th>PTR</th>
+												<th>VATR</th>
+												<th>NATR</th>
+												<th>ADTR</th>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+							</div>
+						</div>
+						<!-- END INTERACTIVE CHART PORTLET--> 
+						 
+                    </div>
+                </div>
+
+				<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+
+
+				<!-- BEGIN CORE PLUGINS -->
+				<script src="../media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+				<script src="../media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+				<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+				<script src="../media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>      
+				<script src="../media/js/bootstrap.min.js" type="text/javascript"></script>
+				<!--[if lt IE 9]>
+				<script src="../media/js/excanvas.min.js"></script>
+				<script src="../media/js/respond.min.js"></script>
+				<![endif]-->   
+				<script src="../media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+				<script src="../media/js/jquery.blockui.min.js" type="text/javascript"></script>  
+				<script src="../media/js/jquery.cookie.min.js" type="text/javascript"></script>
+				<script src="../media/js/jquery.uniform.min.js" type="text/javascript" ></script>
+				<script src="../media/js/jquery.dataTables.min.js" type="text/javascript"></script>
+				<!-- END CORE PLUGINS -->
+
+				<!-- BEGIN PAGE LEVEL PLUGINS -->
+				<script src="../media/js/jquery.flot.js" type="text/javascript"></script>
+				<script src="../media/js/jquery.flot.resize.js" type="text/javascript"></script>
+				<script src="../media/js/jquery.pulsate.min.js" type="text/javascript"></script>
+				<script src="../media/js/moment.js" type="text/javascript"></script>
+				<script src="../media/js/daterangepicker.js" type="text/javascript"></script> 
+				<script src="../media/js/jquery.gritter.js" type="text/javascript"></script>
+				<script src="../media/js/jquery.easy-pie-chart.js" type="text/javascript"></script>
+				<script src="../media/js/jquery.sparkline.min.js" type="text/javascript"></script>  
+				<!-- END PAGE LEVEL PLUGINS -->
+
+				<!-- BEGIN PAGE LEVEL SCRIPTS -->
+				<script src="../media/js/jquery.flot.js"></script>
+				<script src="../media/js/jquery.flot.resize.js"></script>
+				<script src="../media/js/jquery.flot.pie.js"></script>
+				<script src="../media/js/jquery.flot.stack.js"></script>
+				<script src="../media/js/jquery.flot.crosshair.js"></script>
+				<script src="../media/js/app.js" type="text/javascript"></script>    
+				<script src="../media/js/macarons.js" type="text/javascript"></script> 
+				<script src="../media/js/plain.js"></script>  
+				<script src="../media/js/web_transfer_rate.js" type="text/javascript"></script>
+				<!-- END PAGE LEVEL SCRIPTS --> 
+
+
+				<!-- END JAVASCRIPTS -->      
+
+				<script>
+					jQuery(document).ready(function () {
+						App.init(); // initlayout and core plugins
+
+						// init index page's custom scripts
+						transfer_rate.initDashboardDaterange();
+						transfer_rate.initCharts(); // init index page's custom scripts 
+					});
+				</script>
+
+				<script type="text/javascript">
+					 var pagepath = window.location.pathname;
+					 $("a[href='" + pagepath + "']").parent().addClass("active");
+				</script>
+
+			</div>
+			<!-- END PAGE CONTAINER -->
+		
+		</div>
+		<!-- END PAGE -->
+
+	</div>
+
+	<!-- BEGIN FOOTER -->
+	<div class="footer">
+		<div class="footer-inner">
+			2014 &copy;
+			<div class="hidden"> 
+				<script src="https://s19.cnzz.com/z_stat.php?id=1000543054&web_id=1000543054" language="JavaScript"></script>
+			</div>
+		</div>
+		<div class="footer-tools">
+			<span class="go-top">
+			<i class="icon-angle-up"></i>
+			</span>
+		</div>
+	</div>
+	<!-- END FOOTER -->	 
+
+	<style type="text/css">
+		.ExplorerBar
+		{
+			min-height:60px;height:auto;  width:100%;position:fixed!important;position:absolute;bottom:0;left:0;
+			background-color:#000;text-align:center;z-index:99999;font-size:18px;font-family:"微软雅黑","幼圆","宋体";
+			color:#F1F1E8;font-weight:bold;
+			opacity:0.8;filter:alpha(opacity=80);
+		}
+		.ExplorerBar a {color: #1A2C63;display: inline-block;padding: 6px 20px;background-color: #F5EFEA;margin-top: 14px;margin-right: 10px;margin-left: 10px;border-radius: 8px;}
+		.ExplorerBar .spec{background-color:#ffd9a6;color:#333}.ExplorerBar .desc{display:inline-block;padding:6px;margin-top:14px}
+		.ExplorerBar .more_desc{display:inline-block;padding:6px;margin-top:14px;font-size:15px;font-weight:normal}
+		.ExplorerBar a:hover {text-decoration: none;color: #1A2C63;background-color: #EBDBD0;}
+		.ExplorerBar .btn_buy{background-position:-169px 0;margin-left:5px}
+		.ExplorerBar a.btn_buy:hover{background-position:-169px -37px}
+		.ExplorerBar .btn_back{margin-right:5px}
+		.ExplorerBar a.btn_back:hover{background-position:0 -37px}
+	</style>
+
+</body>
+<!-- END BODY -->
+
+</html>
