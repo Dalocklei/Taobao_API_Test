@@ -5,23 +5,25 @@ var transfer_rate = function () {
         initCharts: function () {
 //             var shopid = 0;
 //             var timestr = $("#dashboard-report-range span").text();
-//             var date_range = $("#dashboard-report-range span").html().replace(/\ +/g, "");
-//             var date_list = date_range.split("-");
-//             var date_start = date_list[0].replace(/\/+/g, '-');
-//             var date_end = date_list[1].replace(/\/+/g, '-');
+             var date_range = $("#dashboard-report-range span").html().replace(/\ +/g, "");
+             var date_list = date_range.split("-");
+             var date_start = date_list[0].replace(/\/+/g, '-');
+             var date_end = date_list[1].replace(/\/+/g, '-');
 
-            $.getJSON("getTransferData.php", function (data) {
+            $.post("getTransferData.php",{ start: date_start, end: date_end }, function (data) {
                 if (data == "not") {
                     alert("时间范围超出系统可查询范围");
                     return;
                 }
                 else {
                 	$(document).ready(function() {
-						$('#chart_transfer_rate').dataTable( {
+				//if (typeof myTable == 'undefined') {
+						var myTable = $('#chart_transfer_rate').DataTable( {
 							"info": false,
 							"searching": false,
 							"paging": false,
 							"ordering": false,
+							"destory": true,
 							"data": data, //DTR,VTR,BTR,BDTR,PTR,VATR,NATR,ADTR
 							"columns": [
 								{ "data": "DTR" },
@@ -34,7 +36,8 @@ var transfer_rate = function () {
 								{ "data": "ADTR" }
 							]
 						} );
-						
+
+						//document.getElementById("chart_transfer_rate").innerHTML=data;
 						
 // 						$('#chart_food_db tbody').on('click', 'tr', function () {
 // 							var name = $('td', this).eq(2).text();
@@ -57,10 +60,13 @@ var transfer_rate = function () {
                     });
                     App.scrollTo();
 
-                }, 1000);
+                }, 100);
                 //console.log(start.toISOString(), end.toISOString(), label);
                 $('#dashboard-report-range span').html(start.format('YYYY/MM/DD') + ' - ' + end.format('YYYY/MM/DD'));
-                raw.initCharts();
+		if ($.fn.DataTable.isDataTable('#chart_transfer_rate')) {
+			$('#chart_transfer_rate').DataTable().fnDestory();
+		}
+		transfer_rate.initCharts();
                 //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
             }
 
